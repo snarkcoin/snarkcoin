@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+#
+#  snarkcoind The Snarkcoin Core server.
+#
+#
+# chkconfig: 345 80 20
+# description: snarkcoind
+# processname: snarkcoind
+#
+
+# Source function library.
+. /etc/init.d/functions
+
+# you can override defaults in /etc/sysconfig/snarkcoind, see below
+if [ -f /etc/sysconfig/snarkcoind ]; then
+        . /etc/sysconfig/snarkcoind
+fi
+
+RETVAL=0
+
+prog=snarkcoind
+# you can override the lockfile via BITCOIND_LOCKFILE in /etc/sysconfig/snarkcoind
+lockfile=${BITCOIND_LOCKFILE-/var/lock/subsys/snarkcoind}
+
+# snarkcoind defaults to /usr/bin/snarkcoind, override with BITCOIND_BIN
+snarkcoind=${BITCOIND_BIN-/usr/bin/snarkcoind}
+
+# snarkcoind opts default to -disablewallet, override with BITCOIND_OPTS
+snarkcoind_opts=${BITCOIND_OPTS--disablewallet}
+
+start() {
+    echo -n $"Starting $prog: "
+    daemon $DAEMONOPTS $snarkcoind $snarkcoind_opts
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch $lockfile
+    return $RETVAL
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $lockfile
+    return $RETVAL
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status $prog
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo "Usage: service $prog {start|stop|status|restart}"
+        exit 1
+        ;;
+esac

@@ -1,0 +1,6 @@
+usr/local/bin/snarkcoin-qt usr/bin
+share/pixmaps/snarkcoin32.xpm usr/share/pixmaps
+share/pixmaps/snarkcoin16.xpm usr/share/pixmaps
+share/pixmaps/snarkcoin128.png usr/share/pixmaps
+debian/snarkcoin-qt.desktop usr/share/applications
+debian/snarkcoin-qt.protocol usr/share/kde4/services/

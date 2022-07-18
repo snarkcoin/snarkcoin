@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.0
+Name=Snarkcoin Core
+Comment=Snarkcoin P2P Cryptocurrency
+Comment[de]=Verbinde mit dem Snarkcoin peer-to-peer Netzwerk
+Comment[fr]=Snarkcoin, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Snarkcoin, eşten eşe kriptografik sanal para birimi
+Exec=snarkcoin-qt %u
+Terminal=false
+Type=Application
+Icon=snarkcoin128
+MimeType=x-scheme-handler/snarkcoin;
+Categories=Office;Finance;
+StartupWMClass=Snarkcoin-qt
